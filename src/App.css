@@ -1,42 +1,96 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* Allgemeine Seite */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fb; /* Helles Grau für den Hintergrund */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Höhe der Seite 100% der Viewport-Höhe */
+}
+
+.container {
+  background-color: #ffffff; /* Weißer Hintergrund für Container */
+  border-radius: 8px; /* Runde Ecken */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Weiches Box-Schatten */
+  padding: 20px;
+  max-width: 600px; /* Maximalbreite des Containers */
+  width: 100%;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Überschrift */
+h1 {
+  font-size: 2.5rem;
+  color: #333; /* Dunkelgraue Farbe für den Text */
+  margin-bottom: 20px; /* Abstand nach unten */
+  font-weight: 600;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Text */
+p {
+  font-size: 1.125rem;
+  color: #555; /* Mittelgraue Farbe für den Text */
+  line-height: 1.6; /* Zeilenhöhe für besseren Lesefluss */
+  margin-bottom: 20px;
+}
+
+/* Button */
+button {
+  background-color: #007BFF; 
+  color: white; 
+  padding: 12px 20px; 
+  border: none; 
+  border-radius: 4px; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease; 
+}
+
+button:hover {
+  background-color: #0056b3; 
+}
+
+input, textarea {
+  width: 100%; 
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd; 
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+input:focus, textarea:focus {
+  border-color: #007BFF; /* Blaue Ränder beim Fokus */
+  outline: none; /* Entfernt den Standardfokusrahmen */
+}
+
+input[type="number"], input[type="text"] {
+  background-color: #f9f9f9; /* Hellgrauer Hintergrund für Eingabefelder */
+}
+
+/* Optional: Für kleine Bildschirme (Mobilgeräte) */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
   }
-  to {
-    transform: rotate(360deg);
+
+  h1 {
+    font-size: 2rem; /* Kleinere Schrift für Überschrift */
+  }
+
+  p {
+    font-size: 1rem; 
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+
+input[type=number].remove-arrow::-webkit-outer-spin-button,
+input[type=number].remove-arrow::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+input[type=number].remove-arrow {
+  -moz-appearance: textfield;
 }
