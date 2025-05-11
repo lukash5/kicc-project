@@ -2,10 +2,11 @@ import { useState } from 'react';
 import { InputNumber } from 'primereact/inputnumber';
 
 function Home() {
-  const [inputs, setInputs] = useState(Array(5).fill(0.0));   // String-Werte
+  const [inputs, setInputs] = useState(Array(5).fill(0.0));
   const [score, setScore] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [downloadStatus, setDownloadStatus] = useState(null);
 
   const handleChange = (index, value) => {
     const updatedInputs = [...inputs];
@@ -26,7 +27,6 @@ function Home() {
     };
 
     try {
-      // ======== HIER API URL ANPASSEN ========
       const response = await fetch('https://example.com/api/calculate', {
         method: 'POST',
         headers: {
@@ -47,6 +47,29 @@ function Home() {
       setLoading(false);
     }
   };
+
+  const handleDownload = async () => {
+    setDownloadStatus(null);
+    try {
+      const response = await fetch('https://ew6iancfc1.execute-api.eu-west-1.amazonaws.com/default/kicc-wine-data-fetcher', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
+      }
+
+      const resultText = await response.text();
+
+      setDownloadStatus(resultText);
+    } catch (err) {
+      setDownloadStatus(`Download failed: ${err.message}`);
+    }
+  };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -93,6 +116,21 @@ function Home() {
         <div className="bg-white border rounded-2xl shadow p-6 text-center w-full max-w-md">
           <h2 className="text-2xl font-semibold text-indigo-600 mb-2">Score</h2>
           <div className="text-5xl font-bold text-indigo-800">{score}</div>
+        </div>
+
+        {/* New section: Dataset Download */}
+        <div className="bg-white border rounded-2xl shadow p-6 text-center w-full max-w-md">
+          <h2 className="text-2xl font-semibold text-indigo-600 mb-2">Dataset</h2>
+          <p className="text-gray-700 mb-4">Download the dataset used for training and prediction.</p>
+          <button
+              onClick={handleDownload}
+              className="bg-green-600 text-white px-6 py-3 rounded-lg shadow hover:bg-green-700 transition duration-200"
+          >
+            Download Dataset
+          </button>
+          {downloadStatus && (
+              <p className="mt-4 text-sm text-gray-600">{downloadStatus}</p>
+          )}
         </div>
 
       </div>
