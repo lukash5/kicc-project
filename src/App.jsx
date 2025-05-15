@@ -10,7 +10,7 @@ function App() {
       </header>
 
       {/* Main layout: Sidebar + Content */}
-      <div className="w-full flex flex-1 overflow-hidden">
+      <div className="w-full flex flex-1 overflow-y-auto">
         <Home />
       </div>
     </div>

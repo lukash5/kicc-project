@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { InputNumber } from 'primereact/inputnumber';
 
 function Home() {
-  const [inputs, setInputs] = useState(Array(5).fill(0.0));
+  const [inputs, setInputs] = useState(Array(10).fill(0.0));
   const [score, setScore] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -24,23 +24,29 @@ function Home() {
       residual_sugar: parseFloat(inputs[2]) || 0,
       cirtic_acid: parseFloat(inputs[3]) || 0,
       sulphates: parseFloat(inputs[4]) || 0,
+      density: parseFloat(inputs[5]) || 0,
+      free_sulfur_dioxide: parseFloat(inputs[6]) || 0,
+      total_sulfur_dioxide: parseFloat(inputs[7]) || 0,
+      chlorides: parseFloat(inputs[8]) || 0,
+      volatile_acidity: parseFloat(inputs[9]) || 0,
     };
 
     try {
-      const response = await fetch('https://example.com/api/calculate', {
+      const response = await fetch('https://gw2z7e81v9.execute-api.eu-west-1.amazonaws.com/default/kicc-wine-classifier-deploy', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
       });
-
+    
       if (!response.ok) {
-        throw new Error(`Serverfehler: ${response.status}`);
+        throw new Error(`Serverfehler: ${response.status} - ${response.statusText}`);
       }
-
+      
       const result = await response.json();
-      setScore(result.score);
+      console.log('API response:', result);
+      setScore(result.score);  
     } catch (err) {
       setError(err.message);
     } finally {
@@ -72,34 +78,59 @@ function Home() {
 
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+    <div className="flex items-center justify-center bg-gray-50 overflow-y-auto py-10">
       <div className="flex flex-col items-center space-y-8 p-6 w-full max-w-5xl">
-        
         <div className="card p-fluid flex flex-wrap gap-3">
-        <div className="flex-auto">
-            <label htmlFor="ssn" className="font-bold block mb-2">Alcohol</label>
-            <InputNumber value={inputs[0]} onValueChange={(e) => handleChange(0, e.value)} minFractionDigits={2} />
-        </div>
 
-        <div className="flex-auto">
-            <label htmlFor="phone" className="font-bold block mb-2">pH</label>
-            <InputNumber value={inputs[1]} onValueChange={(e) => handleChange(1, e.value)} minFractionDigits={2} />
-        </div>
+          <div className="flex-auto">
+              <label htmlFor="serial" className="font-bold block mb-2">Alcohol</label>
+              <InputNumber value={inputs[0]} onValueChange={(e) => handleChange(0, e.value)} minFractionDigits={2} />
+          </div>
 
-        <div className="flex-auto">
-            <label htmlFor="serial" className="font-bold block mb-2">Residual Sugar</label>
-            <InputNumber value={inputs[2]} onValueChange={(e) => handleChange(2, e.value)} minFractionDigits={2} />
-        </div>
+          <div className="flex-auto">
+              <label htmlFor="serial" className="font-bold block mb-2">pH</label>
+              <InputNumber value={inputs[1]} onValueChange={(e) => handleChange(1, e.value)} minFractionDigits={2} />
+          </div>
 
-        <div className="flex-auto">
-            <label htmlFor="serial" className="font-bold block mb-2">Citric Acid</label>
-            <InputNumber value={inputs[3]} onValueChange={(e) => handleChange(3, e.value)} minFractionDigits={2} />
-        </div>
+          <div className="flex-auto">
+              <label htmlFor="serial" className="font-bold block mb-2">Residual Sugar</label>
+              <InputNumber value={inputs[2]} onValueChange={(e) => handleChange(2, e.value)} minFractionDigits={2} />
+          </div>
 
-        <div className="flex-auto">
-            <label htmlFor="serial" className="font-bold block mb-2">Sulphates</label>
-            <InputNumber value={inputs[4]} onValueChange={(e) => handleChange(4, e.value)} minFractionDigits={2} />
-        </div>
+          <div className="flex-auto">
+              <label htmlFor="serial" className="font-bold block mb-2">Citric Acid</label>
+              <InputNumber value={inputs[3]} onValueChange={(e) => handleChange(3, e.value)} minFractionDigits={2} />
+          </div>
+
+          <div className="flex-auto">
+              <label htmlFor="serial" className="font-bold block mb-2">Sulphates</label>
+              <InputNumber value={inputs[4]} onValueChange={(e) => handleChange(4, e.value)} minFractionDigits={2} />
+          </div>
+
+          <div className="flex-auto">
+              <label htmlFor="serial" className="font-bold block mb-2">Density</label>
+              <InputNumber value={inputs[5]} onValueChange={(e) => handleChange(5, e.value)} minFractionDigits={2} />
+          </div>
+
+          <div className="flex-auto">
+              <label htmlFor="serial" className="font-bold block mb-2">Free Sulfur Dioxide</label>
+              <InputNumber value={inputs[6]} onValueChange={(e) => handleChange(6, e.value)} minFractionDigits={2} />
+          </div>
+
+          <div className="flex-auto">
+              <label htmlFor="serial" className="font-bold block mb-2">Total Sulfur Dioxide</label>
+              <InputNumber value={inputs[7]} onValueChange={(e) => handleChange(7, e.value)} minFractionDigits={2} />
+          </div>
+
+          <div className="flex-auto">
+              <label htmlFor="serial" className="font-bold block mb-2">Chlorides</label>
+              <InputNumber value={inputs[8]} onValueChange={(e) => handleChange(8, e.value)} minFractionDigits={2} />
+          </div>
+
+          <div className="flex-auto">
+              <label htmlFor="serial" className="font-bold block mb-2">Volatile Acidity</label>
+              <InputNumber value={inputs[9]} onValueChange={(e) => handleChange(9, e.value)} minFractionDigits={2} />
+          </div>
         </div>
 
         <button

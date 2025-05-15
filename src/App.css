@@ -1,42 +1,36 @@
-/* Allgemeine Seite */
 body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f7fb; /* Helles Grau für den Hintergrund */
-  margin: 0;
-  padding: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Höhe der Seite 100% der Viewport-Höhe */
+  justify-content: center; 
+  height: 100vh;           
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fb;
 }
 
 .container {
-  background-color: #ffffff; /* Weißer Hintergrund für Container */
-  border-radius: 8px; /* Runde Ecken */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Weiches Box-Schatten */
+  background-color: #ffffff; 
+  border-radius: 8px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
   padding: 20px;
-  max-width: 600px; /* Maximalbreite des Containers */
+  max-width: 600px; 
   width: 100%;
   text-align: center;
 }
 
-/* Überschrift */
 h1 {
   font-size: 2.5rem;
-  color: #333; /* Dunkelgraue Farbe für den Text */
-  margin-bottom: 20px; /* Abstand nach unten */
+  color: #333; 
+  margin-bottom: 20px; 
   font-weight: 600;
 }
 
-/* Text */
 p {
   font-size: 1.125rem;
-  color: #555; /* Mittelgraue Farbe für den Text */
-  line-height: 1.6; /* Zeilenhöhe für besseren Lesefluss */
+  color: #555; 
+  line-height: 1.6;
   margin-bottom: 20px;
 }
 
-/* Button */
 button {
   background-color: #007BFF; 
   color: white; 
@@ -61,22 +55,21 @@ input, textarea {
 }
 
 input:focus, textarea:focus {
-  border-color: #007BFF; /* Blaue Ränder beim Fokus */
-  outline: none; /* Entfernt den Standardfokusrahmen */
+  border-color: #007BFF; 
+  outline: none; 
 }
 
 input[type="number"], input[type="text"] {
-  background-color: #f9f9f9; /* Hellgrauer Hintergrund für Eingabefelder */
+  background-color: #f9f9f9; 
 }
 
-/* Optional: Für kleine Bildschirme (Mobilgeräte) */
 @media (max-width: 768px) {
   .container {
     padding: 15px;
   }
 
   h1 {
-    font-size: 2rem; /* Kleinere Schrift für Überschrift */
+    font-size: 2rem; 
   }
 
   p {
